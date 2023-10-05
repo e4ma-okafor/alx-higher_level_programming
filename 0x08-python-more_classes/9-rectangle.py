@@ -1,58 +1,36 @@
 #!/usr/bin/python3
-"""
-
-This module is composed by a class that defines a Rectangle
-
-
-"""
+"""Defines a Rectangle class."""
 
 
 class Rectangle:
-    """ Class that defines a rectangle """
+    """Represent a rectangle.
+
+    Attributes:
+        number_of_instances (int): The number of Rectangle instances.
+        print_symbol (any): The symbol used for string representation.
+    """
 
     number_of_instances = 0
     print_symbol = "#"
 
     def __init__(self, width=0, height=0):
-        """ Method that initializes the instance
+        """Initialize a new Rectangle.
 
         Args:
-            width: rectangle width
-            height: rectangle height
-
-
+            width (int): The width of the new rectangle.
+            height (int): The height of the new rectangle.
         """
-
+        type(self).number_of_instances += 1
         self.width = width
         self.height = height
-        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
-        """ method that returns the value of the width
-
-        Returns:
-            rectangle width
-
-
-        """
-
+        """Get/set the width of the Rectangle."""
         return self.__width
 
     @width.setter
     def width(self, value):
-        """ method that defines the width
-
-        Args:
-            value: width
-
-        Raises:
-            TypeError: if width is not an integer
-            ValueError: if width is less than zero
-
-
-        """
-
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value < 0:
@@ -61,27 +39,4 @@ class Rectangle:
 
     @property
     def height(self):
-        """ method that returns the value of the height
-
-        Returns:
-            rectangle height
-
-
-        """
-
-        return self.__height
-
-    @height.setter
-    def height(self, value):
-        """ method that defines the height
-
-        Args:
-            value: height
-
-        Raises:
-            TypeError: if height is not an integer
-            ValueError: if height is less than zero
-
-
-        """
-
+        """Get/set the height of the Rectangle."""
