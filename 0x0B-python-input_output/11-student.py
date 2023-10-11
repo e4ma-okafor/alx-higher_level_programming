@@ -1,32 +1,33 @@
 #!/usr/bin/python3
-""" Module that defines the class Student
-"""
+"""defines class Student"""
 
 
-class Student:
-    """ Class to create student instances """
+class Student():
+    """class to define student"""
 
     def __init__(self, first_name, last_name, age):
-        """ Special method to initialize """
+        """initializes student instances"""
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
     def to_json(self, attrs=None):
-        """ Method that returns directory description """
-        obj = self.__dict__.copy()
+        """returns dictionary descript for JSON serialization"""
         if type(attrs) is list:
+            new_dict = {}
+            for key in self.__dict__:
+                for key2 in attrs:
+                    if key == key2:
+                        new_dict[key] = self.__dict__[key]
+            return new_dict
+        else:
+            return self.__dict__
 
-            for item in attrs:
-                if type(item) is not str:
-                    return obj
-
-            d_list = {}
-
-            for iatr in range(len(attrs)):
-                for satr in obj:
-                    if attrs[iatr] == satr:
-                        d_list[satr] = obj[satr]
-            return d_list
-
-        return obj
+    def reload_from_json(self, json):
+        for key in json:
+            if key == "first_name":
+                self.first_name = json[key]
+            if key == "last_name":
+                self.last_name = json[key]
+            if key == "age":
+                self.age = json[key]j
