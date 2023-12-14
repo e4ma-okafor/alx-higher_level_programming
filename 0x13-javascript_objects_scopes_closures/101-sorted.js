@@ -7,6 +7,7 @@ Object.keys(dict).map((key, index) => {
     newDict[dict[key]] = [];
   }
   newDict[dict[key]].push(key);
+	return;
 });
 
 console.log(newDict);
