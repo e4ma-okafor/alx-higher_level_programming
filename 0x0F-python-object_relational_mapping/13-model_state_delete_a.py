@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Prints the first State object from the database hbtn_0e_6_usa
+Deletes all State objects with a name containing the letter a
 """
 import sys
 from model_state import Base, State
@@ -15,6 +15,9 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    state = session.query(State).order_by(State.id).first()
+    states = session.query(State).filter(State.name.like('%a%')).all()
 
-    print("Nothing" if not state else "{}: {}".format(state.id, state.name))
+    for state in states:
+        session.delete(state)
+
+    session.commit()
